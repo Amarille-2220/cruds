@@ -684,7 +684,7 @@
     // READs
     const token = localStorage.getItem('jwt');
     $.ajax({
-        url: 'http://localhost/christian_joshua_backend/crud/student/list.php', // URL to your PHP script
+        url: 'http://localhost/backend/crud/student/list.php', // URL to your PHP script
         type: 'GET', // Request method
         dataType: 'json', // Expected data type from server
         beforeSend: function(xhr) {

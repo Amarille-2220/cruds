@@ -108,7 +108,7 @@
 
   <li class="nav-item">
     <a class="nav-link collapsed" data-bs-target="#system-nav" data-bs-toggle="collapse" href="#">
-      <i class="bi bi-menu-button-wide"></i><span>Student Affairs</span><i class="bi bi-chevron-down ms-auto"></i>
+      <i class="bi bi-globe2"></i><span>Student Council</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
     <ul id="system-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
       <li>
@@ -118,17 +118,43 @@
       </li>
       <li>
         <a href="logbook.php">
-          <i class="bi bi-circle icon"></i><span>Visitors Logbook</span>
+          <i class="bi bi-circle icon"></i><span>Organization List</span>
         </a>
       </li>
       <li>
         <a href="logbook.php">
-          <i class="bi bi-circle icon"></i><span>Events</span>
+          <i class="bi bi-circle icon"></i><span>Registration</span>
         </a>
       </li>
       <li>
         <a href="logbook.php">
-          <i class="bi bi-circle icon"></i><span>Feedbacks</span>
+          <i class="bi bi-circle icon"></i><span>Renewal</span>
+        </a>
+      </li>
+    </ul>
+  </li>
+  
+  <li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#logbook-nav" data-bs-toggle="collapse" href="#">
+      <i class="bi bi-journal-check"></i><span>Logbook</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="logbook-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+      <li>
+        <a href="logbook.php">
+          <i class="bi bi-circle icon"></i><span>Visitors</span>
+        </a>
+      </li>
+    </ul>
+  </li>
+  
+  <li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#activies-nav" data-bs-toggle="collapse" href="#">
+      <i class="bi bi-calendar2-week"></i><span>Student Activities</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="activies-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+      <li>
+        <a href="logbook.php">
+          <i class="bi bi-circle icon"></i><span>Calendar Events</span>
         </a>
       </li>
     </ul>
@@ -344,6 +370,13 @@
       <span>Login</span>
     </a>
   </li><!-- End Login Page Nav -->
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="login.php">
+      <i class="bi bi-box-arrow-right"></i>
+      <span>Logout</span>
+    </a>
+  </li>
 
   <li class="nav-item">
     <a class="nav-link collapsed" href="pages-error-404.php">

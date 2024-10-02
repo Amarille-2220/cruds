@@ -29,7 +29,7 @@
                     <p class="text-center small">Enter your personal details to create account</p>
                   </div>
 
-                  <form id="registrationForm" class="row g-3 needs-validation" >
+                  <form id="registrationForm" class="row g-3" >
 
 
                     <div class="col-12">
@@ -53,13 +53,7 @@
                       <div class="invalid-feedback">Please enter your password!</div>
                     </div>
 
-                    <div class="col-12">
-                      <div class="form-check">
-                        <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
-                        <label class="form-check-label" for="acceptTerms">I agree and accept the <a href="#">terms and conditions</a></label>
-                        <div class="invalid-feedback">You must agree before submitting.</div>
-                      </div>
-                    </div>
+
                     <div class="col-12">
                       <button class="btn btn-primary w-100" type="submit">Create Account</button>
                     </div>
@@ -70,6 +64,28 @@
 
                 </div>
               </div>
+
+              <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Account Created Successfully!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="text-center">
+                      <i class="fas fa-check-circle fa-5x text-success"></i>
+                      <p class="text-success">Your account has been created successfully!</p>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="loginButton">Login Now</button>
+                  </div>
+                </div>
+              </div>
+              </div>
+
 
               <div class="credits">
                 BCP
@@ -103,6 +119,8 @@
 
 </html>
 
+<script src="assets/js/jquery/jquery.min.js"></script>
+
 <script>
   $(document).ready(function() {
 
@@ -114,9 +132,9 @@ $('#registrationForm').on('submit', function(e) {
 
 
     const formData = {
-        user_namex    : $('#txt_user_name').val(),
-        user_emailx   : $('#txt_user_email').val(),
-        user_passwordx: $('#txt_user_password').val(),
+        user_name    : $('#txt_user_name').val(),
+        user_email : $('#txt_user_email').val(),
+        user_password: $('#txt_user_password').val(),
         };
 
 
@@ -126,9 +144,11 @@ $('#registrationForm').on('submit', function(e) {
             data    : formData,
             dataType: 'json',
             success : function(response) {
-
-
-
+              if (response.status === 1 && response.message === 'success') {
+                $('#successModal').modal('show');
+            } else {
+                alert('Error creating account: ' + response.message);
+            }
             },
             error: function(xhr, status, error) {
                 alert("An error occurred: " + error);
@@ -138,6 +158,10 @@ $('#registrationForm').on('submit', function(e) {
 
 
 });
+
+            $('#loginButton').on('click', function() {
+              window.location.href = 'login.php';
+            });
 
 });
 </script>

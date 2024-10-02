@@ -8,7 +8,10 @@
 
 body {
   font-family: "Inter", sans-serif;
-  background: #f6f9ff;
+  min-height: 100vh;
+  background: url(../img/bg.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
   color: #444444;
 }
 
