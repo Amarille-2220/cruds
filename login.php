@@ -3,68 +3,137 @@
 
 <?php include 'head1.php' ?>
 
+<style>
+    body {
+    background-color: #f4f4f4;
+    /*background-image: url('assets/img/bcp\ bg.jpg');*/
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.logo img {
+    max-width: 60%;
+    height: auto;
+}
+
+.logo p {
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: #333; 
+}
+
+.login-container {  
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    border: 1px solid #999797;
+    margin: 0 auto;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    text-align: left;
+    color: #333;
+    margin: 10px 0 5px;
+}
+
+#accountId, #password {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid black;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.forgot-password {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.forgot-password a {
+    color: #007BFF;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+button {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #555;
+}
+</style>
+
 <body>
 
-  <main>
-    <div class="container">
-
-      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-
-              <div class="d-flex justify-content-center py-4">
-                <a href="index.html" class="logo d-flex align-items-center w-auto">
-                  <img src="assets/img/bcplogo.png" alt="Logo">
-                  <span class="d-none d-lg-block">Student Affairs</span>
-                </a>
-              </div><!-- End Logo -->
-
-              <div class="card mb-3">
-
-                <div class="card-body">
-
-                  <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
-                    <p class="text-center small">Enter your username & password to login</p>
-                  </div>
-
-                  <form class="row g-3 needs-validation"id="loginForm" novalidate>
-
-                    <div class="col-12">
-                      <label for="yourUsername" class="form-label">Username</label>
-                      <div class="input-group has-validation">
-                        <input type="username" name="username" class="form-control" id="yourUsername" required>
-                        <div class="invalid-feedback">Please enter your username.</div>
-                      </div>
-                    </div>
-
-                    <div class="col-12">
-                      <label for="yourPassword" class="form-label">Password</label>
-                      <input type="password" name="password" class="form-control" id="yourPassword" required>
-                      <div class="invalid-feedback">Please enter your password!</div>
-                    </div>
-                    <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">Login</button>
-                    </div>
-                  </form>
-
-                </div>
-              </div>
-
-              <div class="credits">
-                BCP
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-      </section>
-
+    <div class="logo">
+        <img src="assets/img/bcplogo2.png" alt="Logo">
+        <p>Student Affairs Management System</p> 
     </div>
-  </main><!-- End #main -->
-  <!---<?php include 'footer.php' ?> -->
+    
+    <div class="login-container">
+        <h2>Log Into Your Account</h2>
+        <?php if (!empty($error)): ?>
+                <div class="error-message" style="color: red;">
+                    <?= $error ?>
+            <?php endif; ?>
+        <form id="loginForm" action="login.php" method="post">
+            <label for="txt_username">Username</label>
+            <input type="text" id="txt_username" name="txt_username" required aria-label="Account ID">
+
+            <label for="txt_password">Password</label>
+            <input type="password" id="txt_password" name="txt_password" required aria-label="Password">
+
+            <div class="forgot-password">
+                <a href="#" aria-label="Forgot password?">Forgot your password?</a>
+            </div>
+
+            <button type="submit">LOGIN</button>
+        </form>
+    </div>
+
+
+<!-- End #main -->
+  
+
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
@@ -94,8 +163,8 @@
             
             // Collect form data
             const formData = {
-                user_email: $('#yourUsername').val(),
-                user_password: $('#yourPassword').val()
+                user_email: $('#txt_username').val(),
+                user_password: $('#txt_password').val()
             };
             
             $.ajax({

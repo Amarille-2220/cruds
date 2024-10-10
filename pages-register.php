@@ -16,7 +16,7 @@
               <div class="d-flex justify-content-center py-4">
                 <a href="index.html" class="logo d-flex align-items-center w-auto">
                   <img src="assets/img/bcplogo.png" alt="Logo">
-                  <span class="d-none d-lg-block">Your System Admin/Staff Register</span>
+                  <span class="d-none d-lg-block">Admin</span>
                 </a>
               </div><!-- End Logo -->
 
@@ -144,7 +144,7 @@ $('#registrationForm').on('submit', function(e) {
             data    : formData,
             dataType: 'json',
             success : function(response) {
-              if (response.status === 1 && response.message === 'success') {
+              if (response.status === 1) {
                 $('#successModal').modal('show');
             } else {
                 alert('Error creating account: ' + response.message);

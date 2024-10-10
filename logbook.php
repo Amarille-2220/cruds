@@ -224,14 +224,14 @@
 });
 
 // DELETE
-function deleteItem(student_id) {
+function deleteItem(visitor_id) {
   $('#deleteModal').modal('show');
   $('#confirmDelete').off('click').on('click', function() {
     // Send the AJAX request to delete the item
     $.ajax({
-      url: 'http://localhost/backend/crud/student/delete.php',
+      url: 'http://localhost/backend/crud/logbook/delete.php',
       type: 'POST',
-      data: { student_id: student_id },
+      data: { visitor_id: visitor_id },
       dataType: 'json',
       beforeSend: function(xhr) {
         const token = localStorage.getItem('jwt');
@@ -240,7 +240,7 @@ function deleteItem(student_id) {
       success: function(response) {
         if (response.success) {
           // Remove the row from the table
-          $(`#row${student_id}`).remove();
+          $(`#row${visitor_id}`).remove();
           alert('Item deleted successfully.');
         } else {
           alert('Error deleting item: ' + response.message);
@@ -354,6 +354,12 @@ function deleteItem(student_id) {
                         <td>${item.visitor_position}</td>
                         <td>${item.visitor_purpose}</td>
                         <td>${item.visitor_date}</td>
+
+
+                        div class="btn-group">
+                           <td><button class="btn btn-sm btn-danger" onClick="deleteItem('${item.visitor_id}')"><i class="bi bi-trash-fill"></i></button></td>
+                        </div>
+                        <td></td>
 
                     </tr>
                 `;
