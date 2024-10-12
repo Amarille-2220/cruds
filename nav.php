@@ -1,3 +1,7 @@
+<script>
+  var usertype = localStorage.getItem('usertype');
+</script>
+
 <header id="header" class="header fixed-top d-flex align-items-center">
 
 <div class="d-flex align-items-center justify-content-between">
@@ -24,7 +28,7 @@
 
       <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
         <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-        <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+        <span id="span_user_name" class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
       </a><!-- End Profile Iamge Icon -->
 
       <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -117,9 +121,42 @@
 
   <hr class="sidebar-divider">
 
+  <li class="nav-heading" id="nav_heading">Pages</li>
+
+
+
+  <hr class="sidebar-divider">
+
   <li class="nav-heading">Pages</li>
 
   <li class="nav-item">
+    <a class="nav-link collapsed" href="users-profile.php">
+      <i class="bi bi-person"></i>
+      <span>Profile</span>
+    </a>
+  </li><!-- End Profile Page Nav -->
+
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="login.php">
+      <i class="bi bi-box-arrow-right"></i>
+      <span>Logout</span>
+    </a>
+  </li>
+
+
+</ul>
+
+</aside><!-- End Sidebar-->
+
+<script src="assets/js/jquery/jquery.min.js"></script>
+
+<script>
+  var links="";
+console.log(usertype.toUpperCase())
+  if(usertype.toUpperCase()=="ENCODER"){
+    links +=`
+      <li class="nav-item">
     <a class="nav-link collapsed" data-bs-target="#system-nav" data-bs-toggle="collapse" href="#">
       <i class="bi bi-globe2"></i><span>Student Council</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
@@ -173,27 +210,80 @@
     </ul>
   </li><!-- End System Nav -->
 
+    `;
 
-  <hr class="sidebar-divider">
 
-  <li class="nav-heading">Pages</li>
-
+  }
+  else if(usertype.toUpperCase()=="ADMIN"){
+    links+=`
+    
   <li class="nav-item">
-    <a class="nav-link collapsed" href="users-profile.php">
-      <i class="bi bi-person"></i>
-      <span>Profile</span>
+  <a class="nav-link collapsed" data-bs-target="#access-nav" data-bs-toggle="collapse" href="#">
+      <i class="bi bi-people"></i><span>Manage Access</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
-  </li><!-- End Profile Page Nav -->
-
-
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="login.php">
-      <i class="bi bi-box-arrow-right"></i>
-      <span>Logout</span>
+    <ul id="access-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+      <li>
+        <a href="create-user.php">
+          <i class="bi bi-circle icon"></i><span>Create User</span>
+        </a>
+      </li>
+      <li>
+        <a href="logs.php">
+          <i class="bi bi-circle icon"></i><span>Logs</span>
+        </a>
+      </li>
+    </ul>
+    <a class="nav-link collapsed" data-bs-target="#system-nav" data-bs-toggle="collapse" href="#">
+      <i class="bi bi-globe2"></i><span>Student Council</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
+    <ul id="system-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+      <li>
+        <a href="modules.php">
+          <i class="bi bi-circle icon"></i><span>Student Info</span>
+        </a>
+      </li>
+      <li>
+        <a href="admin-org.php">
+          <i class="bi bi-circle icon"></i><span>Organization List</span>
+        </a>
+      </li>
+      <li>
+        <a href="admin-reg.php">
+          <i class="bi bi-circle icon"></i><span>Approval</span>
+        </a>
+      </li>
+    </ul>
   </li>
+  
+  <li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#logbook-nav" data-bs-toggle="collapse" href="#">
+      <i class="bi bi-journal-check"></i><span>Logbook</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="logbook-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+      <li>
+        <a href="logbook.php">
+          <i class="bi bi-circle icon"></i><span>Visitors</span>
+        </a>
+      </li>
+    </ul>
+  </li>
+  
+  <li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#activies-nav" data-bs-toggle="collapse" href="#">
+      <i class="bi bi-calendar2-week"></i><span>Student Activities</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="activies-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+      <li>
+        <a href="logbook.php">
+          <i class="bi bi-circle icon"></i><span>Calendar Events</span>
+        </a>
+      </li>
+    </ul>
+  </li><!-- End System Nav -->
 
-
-</ul>
-
-</aside><!-- End Sidebar-->
+    `;
+   
+  }
+  const navbar = document.getElementById('nav_heading');
+  $("#nav_heading").append(links);
+</script>

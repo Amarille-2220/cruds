@@ -2,6 +2,8 @@
 <html lang="en">
 
 <?php include 'head1.php' ?>
+<?php include './js/loginchecker.php' ?>
+
 
 <style>
     body {
@@ -154,10 +156,23 @@ button:hover {
 
 </html>
 
+
+
 <script src="assets/js/jquery/jquery.min.js"></script>
 
+
+
 <script>
+    const jwt = LoginChecker();
+    console.log(jwt)
+    if(jwt.status=="valid"){
+        window.location.href = 'index.php';
+    }
+
+
+
     $(document).ready(function() {
+
         $('#loginForm').on('submit', function(event) {
             event.preventDefault(); // Prevent the form from submitting the traditional way
             
@@ -176,16 +191,20 @@ button:hover {
                     const status = response.message;
                     const jwt = response.jwt;
 
-                    if(status!="Invalid User"){
-                        localStorage.setItem('jwt', jwt);
-                        window.location.href = 'index.php'; 
-                    }
-                    else{
+                    if(status=="Invalid User"){
                         alert("Error " + status);
                         $("#span_error").removeClass('d-none');
                         $("#txt_username").addClass('border border-danger');
                         $("#txt_password").addClass('border border-danger');
+                    }
+                    else if(status=="Inactive User"){
+                        alert("Error User is currently inactive, try contacting the adminstrator! si Christian");
+                    }
+                    else{
 
+
+                        localStorage.setItem('jwt', jwt);
+                        window.location.href = 'index.php'; 
                     }
  
 

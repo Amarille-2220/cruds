@@ -1,3 +1,9 @@
+<script>
+  if(localStorage.getItem('usertype')=="ENCODER"){
+    window.location.href = 'index.php';
+  }
+</script>
+
 <!DOCTYPE html>
 <html lang="en">
 

@@ -1,12 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include 'head.php' ?>
+<?php include './js/loginchecker.php' ?>
 
+<script>
+    const jwt = LoginChecker();
+    var user_type = "";
+    if(jwt.status=="invalid"){
+        localStorage.clear();
+        window.location.href = 'login.php';
+    }
+    else{
+      const data      = jwt.data
+      var   username  = data.data.user_name;
+      var   useremail = data.data.user_email;
+      var   usertype  = data.data.user_type;
+
+      localStorage.setItem('username',username);
+      localStorage.setItem('usertype',usertype);
+      localStorage.setItem('useremail',useremail);
+
+      
+    }
+</script>
+
+
+<?php include 'head.php' ?>
 <body>
+
+
 
   <!-- ======= Header ======= -->
 <?php include 'nav.php' ?>
+
+
 
   <main id="main" class="main">
 
@@ -337,13 +364,27 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
+
 </body>
 
 </html>
 <script src="assets/js/jquery/jquery.min.js"></script>
 
+
+
 <script>
+ 
+
+
+
+
   $(document).ready(function() {
+
+
+    $("#span_user_name").html(username);
+
+
+
     // READs
     const token = localStorage.getItem('jwt');
     $.ajax({
