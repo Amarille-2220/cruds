@@ -129,8 +129,10 @@ button:hover {
             </div>
 
             <button type="submit">LOGIN</button>
+            
         </form>
     </div>
+    <button type="button" onclick="location.href='pre-reg.php'" class="btn btn-primary ms-2 w-25 mt-3">Register your Organization</button>
 
 
 <!-- End #main -->
@@ -198,7 +200,7 @@ button:hover {
                         $("#txt_password").addClass('border border-danger');
                     }
                     else if(status=="Inactive User"){
-                        alert("Error User is currently inactive, try contacting the adminstrator! si Christian");
+                        alert("Error User is currently inactive, try contacting the adminstrator!");
                     }
                     else{
 

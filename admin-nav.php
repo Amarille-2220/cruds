@@ -163,7 +163,7 @@
     </a>
     <ul id="logbook-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
       <li>
-        <a href="logbook.php">
+        <a href="admin-logbook.php">
           <i class="bi bi-circle icon"></i><span>Visitors</span>
         </a>
       </li>

@@ -76,10 +76,10 @@
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-check-circle"></i>
+                      <i class="bi bi-globe"></i>
                     </div>
                     <div class="ps-3">
-                      <h6 id="org_total"></h6>
+                      <h6 id="org_total">1</h6>
                       <span class="text-success small pt-1 fw-bold"></span> 
 
                     </div>
@@ -114,8 +114,8 @@
                       <i class="bi bi-calendar-event-fill"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>$3,264</h6>
-                      <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                      <h6>4</h6>
+                       <span class="text-muted small pt-2 ps-1">Upcoming</span>
 
                     </div>
                   </div>
@@ -143,15 +143,15 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Customers <span>| This Year</span></h5>
+                  <h5 class="card-title">Users</h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>1244</h6>
-                      <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
+                      <h6>5</h6>
+                      <span class="text-success small pt-1 fw-bold">Active</span>
 
                     </div>
                   </div>
@@ -249,6 +249,8 @@
           <!-- Budget Report --><!-- End Budget Report -->
 
           <!-- Website Traffic -->
+
+          <div class="col-12">
           <div class="card">
             <div class="filter">
               <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
@@ -335,6 +337,7 @@
               
               
             </div>
+          </div>
           </div><!-- End Website Traffic -->
 
           <!-- News & Updates Traffic --><!-- End News & Updates -->
@@ -382,6 +385,9 @@
 
 
     $("#span_user_name").html(username);
+    $("#head_user_name").html(username);
+
+
 
 
 
@@ -411,19 +417,3 @@
   });
 </script>
 
-$.ajax({
-          url       : 'http://localhost/barangay_system_new/backend/reports/feedback-reports.php',   // URL to your PHP script
-          type      : 'GET',                                                               // Request method
-          dataType  : 'json',
-          success: function(response) {
-           const data = response.message;
-           if(data.length > 0){
-              const pending = data[0].count;
-              const approved = data[1].count;
-              const declined = data[2].count;
-              $("#feedback_approved").html(approved);
-              $("#feedback_pending").html(pending);
-              $("#feedback_declined").html(declined);
-           }
-          },
-      });

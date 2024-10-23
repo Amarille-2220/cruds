@@ -1,94 +1,122 @@
-<script>
-  if(localStorage.getItem('usertype')=="ENCODER"){
-    window.location.href = 'index.php';
-  }
-</script>
-
 <!DOCTYPE html>
 <html lang="en">
 
-
-<?php include './js/loginchecker.php' ?>
-
-<script>
-    const jwt = LoginChecker();
-    var user_type = "";
-    if(jwt.status=="invalid"){
-        localStorage.clear();
-        window.location.href = 'login.php';
-    }
-    else{
-      const data      = jwt.data
-      var   username  = data.data.user_name;
-      var   useremail = data.data.user_email;
-      var   usertype  = data.data.user_type;
-
-      localStorage.setItem('username',username);
-      localStorage.setItem('usertype',usertype);
-      localStorage.setItem('useremail',useremail);
-
-      
-    }
-</script>
-
-<?php include 'admin-head.php' ?>
+<?php include 'head.php' ?>
 
 <body>
 
   <!-- ======= Header ======= -->
-  <?php include 'nav.php' ?>
 
-  <main id="main" class="main">
 
-    <div class="pagetitle">
-      <h1>Users Info</h1>
+  <main>
+
+    <!-- <div class="pagetitle">
+      <h1>Student Council</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Student Affairs</li>
-          <li class="breadcrumb-item active">Users</li>
+          <li class="breadcrumb-item">Pages</li>
+          <li class="breadcrumb-item active">Registration</li>
         </ol>
       </nav>
-    </div><!-- End Page Title -->
+    </div> -->
 
     <section class="section">
     <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Users Information</h5>
-              <button type="button" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#myModal">
-              <i class="bi bi-person-add"></i>
-              </button>
+              <h5 class="card-title">Registration</h5>
 
-              <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
+              <!-- Floating Labels Form -->
+            <form class="row g-3" id="formOrgInsert" enctype="multipart/form-data" method="POST">
 
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
+              <div class="col-md-12">
+                  
                 </div>
+                <div class="col-md-12">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="org_name" placeholder="Organization Name">
+                    <label for="org_name">Organization Name</label>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="stud_name" placeholder="Student Name">
+                    <label for="stud_name">FullName</label>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="adv_name" placeholder="Adviser Name">
+                    <label for="adv_name">Adviser</label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="stud_course" placeholder="Your Course">
+                    <label for="stud_course">Course</label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="stud_section" placeholder="Your Section">
+                    <label for="stud_section">Section</label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-floating">
+                    <input type="email" class="form-control" id="stud_email" placeholder="Your Email">
+                    <label for="stud_email">Email</label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="stud_contact" placeholder="Your Contact">
+                    <label for="stud_contact">Contacts</label>
+                  </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                  <label for="inputNumber" class="col-sm-2 col-form-label">Application Form</label>
+                  <div class="col-sm-10">
+                    <input class="form-control" type="file" name="applicationfile" id="applicationfile">
+                  </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                  <label for="inputNumber" class="col-sm-2 col-form-label">Organization Chart</label>
+                  <div class="col-sm-10">
+                    <input class="form-control" type="file" name="organizationfile" id="organizationfile">
+                  </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                  <label for="inputNumber" class="col-sm-2 col-form-label">Letter of Intent</label>
+                  <div class="col-sm-10">
+                    <input class="form-control" type="file" name="letterofintentfile" id="letterofintentfile">
+                  </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                  <label for="inputNumber" class="col-sm-2 col-form-label">Request Letter</label>
+                  <div class="col-sm-10">
+                    <input class="form-control" type="file" name="requestfile" id="requestfile">
+                  </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                  <label for="inputNumber" class="col-sm-2 col-form-label">ByLaws</label>
+                  <div class="col-sm-10">
+                    <input class="form-control" type="file" name="bylawsfile" id="bylawsfile">
+                  </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                  <label for="inputNumber" class="col-sm-2 col-form-label">Action Plan</label>
+                  <div class="col-sm-10">
+                    <input class="form-control" type="file" name="actionfile" id="actionfile">
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <a href="login.php" class="btn btn-secondary ms-2">Cancel</a>
+                </div>
+              
 
-              <!-- TStudent Information -->
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <!-- <th scope="col">#</th> -->
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <!-- <th scope="col">Birthday</th>
-                    <th scope="col">Address</th> -->
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody id="tbl_tbody">
-
-                </tbody>
-              </table>
-              <!-- End Student Information -->
+            </form><!-- End floating Labels Form -->
 
             </div>
           </div>
@@ -101,49 +129,33 @@
 
       <!-- Modal Header -->
       <div class="modal-header">
+        <h4 class="modal-title">Add Student</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
 
       <!-- Modal body -->
       <div class="modal-body">
       <div class="container mt-5">
-    <h2> Users</h2>
+    <h2>Insert New Item</h2>
     <form id="insertStudent">
         <div class="form-group">
-            <label for="txt_user_id">Student ID</label>
-            <input type="text" class="form-control" id="txt_user_id">
+            <label for="student_id">Student ID</label>
+            <input type="text" class="form-control" id="student_id">
         </div>
         <div class="form-group">
-            <label for="txt_user_name">Fullname</label>
-            <input type="text" class="form-control" id="txt_user_name" >
+            <label for="student_fullname">Fullname</label>
+            <input type="text" class="form-control" id="student_fullname" >
         </div>
         <div class="form-group">
-          <label for="txt_user_course">Course</label>
-          <input type="text" class="form-control" id="txt_user_course" >
+            <label for="student_birthday">Birthday</label>
+            <input type="date" class="form-control" id="student_birthday" >
         </div>
         <div class="form-group">
-          <label for="txt_user_year">Year</label>
-          <input type="text" class="form-control" id="txt_user_year" >
+            <label for="student_address">Address</label>
+            <input type="text" class="form-control" id="student_address" >
         </div>
         <div class="form-group">
-            <label for="txt_user_address">Address</label>
-            <input type="text" class="form-control" id="txt_user_address" >
-        </div>
-        <div class="form-group">
-            <label for="txt_user_bday">Birthday</label>
-            <input type="date" class="form-control" id="txt_user_bday" >
-        </div>
-        <div class="form-group">
-            <label for="txt_user_email">Email</label>
-            <input type="text" class="form-control" id="txt_user_email" >
-        </div>
-        <div class="form-group">
-            <label for="txt_user_password">Password</label>
-            <input type="password" class="form-control" id="txt_user_password" >
-        </div>
-        <!-- <div class="form-group">
-        <label for="student_year">Year:</label>
-        <input type="text" class="form-control" id="student_year" >
+        <label for="select-action">Year:</label>
         <div class="dropdown">
             <button class="btn btn-light dropdown-toggle" type="button" id="select-action" data-bs-toggle="dropdown" aria-expanded="false">
                 Select year:
@@ -157,7 +169,7 @@
         </div>
         <input type="hidden" id="selected-action" name="selected_action">
     </div>
-        </div> -->
+        </div>
         <button type="submit" class="btn btn-primary mt-3">Submit</button>
                 <button type="button" class="btn btn-danger mt-3" data-bs-dismiss="modal">Close</button>
     </form>
@@ -237,7 +249,7 @@
   </div>
 </div>
 
-<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -248,17 +260,19 @@
                   <div class="modal-body">
                     <div class="text-center">
                       <i class="fas fa-check-circle fa-5x text-success"></i>
-                      <p class="text-success">Your account has been created successfully!</p>
+                      <p class="text-success">You successfully registered</p>
                     </div>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="loginButton">Ok</button>
+                    <button type="button" class="btn btn-primary" id="submitButton">Ok</button>
                   </div>
                 </div>
               </div>
 
  
 </div>
+
+              </div>
 
   </main><!-- End #main -->
 
@@ -294,19 +308,15 @@ $(document).ready(function() {
     });
 });
 
-$("#span_user_name").html(username);
-    $("#head_user_name").html(username);
-
-
 // DELETE
 function deleteItem(student_id) {
   $('#deleteModal').modal('show');
   $('#confirmDelete').off('click').on('click', function() {
     // Send the AJAX request to delete the item
     $.ajax({
-      url: 'http://localhost/backend/auth-file/delete.php',
+      url: 'http://localhost/backend/crud/student/delete.php',
       type: 'POST',
-      data: { user_id: user_id },
+      data: { student_id: student_id },
       dataType: 'json',
       beforeSend: function(xhr) {
         const token = localStorage.getItem('jwt');
@@ -315,7 +325,7 @@ function deleteItem(student_id) {
       success: function(response) {
         if (response.success) {
           // Remove the row from the table
-          $(`#row${user_id}`).remove();
+          $(`#row${student_id}`).remove();
           alert('Item deleted successfully.');
         } else {
           alert('Error deleting item: ' + response.message);
@@ -408,7 +418,7 @@ function deleteItem(student_id) {
     // READs
     const token = localStorage.getItem('jwt');
     $.ajax({
-        url: 'http://localhost/backend/auth-file/read.php', // URL to your PHP script
+        url: 'http://localhost/backend/crud/student/read.php', // URL to your PHP script
         type: 'GET', // Request method
         dataType: 'json', // Expected data type from server
         beforeSend: function(xhr) {
@@ -422,14 +432,15 @@ function deleteItem(student_id) {
             for (var i = 0; i < data.length; i++) {
                 var item = data[i];
                 rows += `
-                    <tr id="row${item.user_id}">
-                        <td>${item.user_name}</td>
-                        <td>${item.user_email}</td>
-
+                    <tr id="row${item.student_id}">
+                        <td>${item.student_id}</td>
+                        <td>${item.student_fullname}</td>
+                        <td>${item.student_birthday}</td>
+                        <td>${item.student_address}</td>
 
                         <div class="btn-group">
-                           <td><button class="btn btn-sm btn-danger" onClick="deleteItem('${item.user_email}')"><i class="bi bi-trash-fill"></i></button>
-                          <button class="btn btn-sm btn-primary" data-student=${item} onClick="EditItem('${item.user_name}','${item.user_email}')" data-bs-toggle="modal" data-bs-target="#modalEdit"><i class="bi bi-pencil-square"></i></button>
+                           <td><button class="btn btn-sm btn-danger" onClick="deleteItem('${item.student_id}')"><i class="bi bi-trash-fill"></i></button>
+                          <button class="btn btn-sm btn-primary" data-student=${item} onClick="EditItem('${item.student_id}','${item.student_fullname}','${item.student_address}','${item.student_address}')" data-bs-toggle="modal" data-bs-target="#modalEdit"><i class="bi bi-pencil-square"></i></button>
                           <button class="btn btn-sm btn-success" onClick="readItem"><i class="bi bi-eye-fill"></i></button>
                           </td>
                         </div>
@@ -449,47 +460,123 @@ function deleteItem(student_id) {
     });
 
     // INSERT
-    $('#myModal').on('submit', function(e) {
+    // $('#formInsertOrg').on('submit', function(event) {
+    //         event.preventDefault();
 
-e.preventDefault();
+            // Get form data
+    //         const org_name = $('#org_name').val();
+    //         const stud_name = $('#stud_name').val();
+    //         const stud_course = $('#stud_course').val();
+    //         const stud_section = $('#stud_section').val();
+    //         const stud_email = $('#stud_email').val();
+    //         const stud_contact = $('#stud_contact').val();
+    //         const applicationfile = $('#applicationfile');
 
+    // //         // if(applicationfile.files.length> 0){
 
-const formData = {
-    user_id    : $('#txt_user_id').val(),
-    user_name    : $('#txt_user_name').val(),
-    user_course    : $('#txt_user_course').val(),
-    user_year    : $('#txt_user_year').val(),
-    user_address : $('#txt_user_address').val(),
-    user_bday: $('#txt_user_bday').val(),
-    user_email : $('#txt_user_email').val(),
-    user_password: $('#txt_user_password').val(),
-    };
-
-
-    $.ajax({
-        url     : 'http://localhost/backend/auth-file/registration.php',
-        type    : 'POST',
-        data    : formData,
-        dataType: 'json',
-        success : function(response) {
-          if (response.status === 1) {
-            $('#successModal').modal('show');
-        } else {
-            alert('Error creating account: ' + response.message);
-        }
-        },
-        error: function(xhr, status, error) {
-            alert("An error occurred: " + error);
-        }
-    });
-    
+    //         // }
 
 
-});
+            
 
-        $('#loginButton').on('click', function() {
-          window.location.href = 'create-user.php';
-        });
+    //         // Prepare the data to be sent as JSON
+    //         const data = JSON.stringify({
+    //           org_name      : org_name,
+    //           stud_name: stud_name,
+    //           stud_course: stud_course,
+    //           stud_section: stud_section,
+    //           stud_email: stud_email,
+    //           stud_contact: stud_contact
+              
+
+    //         });
+
+
+    //         // Send AJAX request
+    //         $.ajax({
+    //             url: 'http://localhost/backend/crud/organization/create.php',
+    //             type: 'POST',
+    //             // contentType: 'application/json',
+    //             data: formData,
+    //             beforeSend: function(xhr) {
+    //                 const token = localStorage.getItem('jwt');
+    //                 xhr.setRequestHeader('Authorization', token);
+    //             },
+    //             success: function(response) {
+    //               if (response.status === 1) {
+    //                   $('#registerModal').modal('show');
+    //               } else {
+    //                   alert('Error creating account: ' + response.message);
+    //               }
+    //               },
+    //               error: function(xhr, status, error) {
+    //                   alert("An error occurred: " + error);
+    //               }
+    //           });
+    //     });
+
+    //     $('#confirmButton').on('click', function() {
+    //           window.location.href = 'orglist.php';
+    //         });
 
   });
+
+
+  
 </script>
+
+<script>
+        $(document).ready(function() {
+            $('#formOrgInsert').on('submit', function(event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                var formData = new FormData(this);
+
+                
+            // Get form data
+            const org_name = $('#org_name').val();
+            const stud_name = $('#stud_name').val();
+            const adv_name = $('#adv_name').val();
+            const stud_course = $('#stud_course').val();
+            const stud_section = $('#stud_section').val();
+            const stud_email = $('#stud_email').val();
+            const stud_contact = $('#stud_contact').val();
+
+            formData.append("org_namex", org_name)
+            formData.append("stud_namex", stud_name)
+            formData.append("adv_namex", adv_name)
+            formData.append("stud_coursex", stud_course)
+            formData.append("stud_sectionx", stud_section)
+            formData.append("stud_emailx", stud_email)
+            formData.append("stud_contactx", stud_contact)
+            formData.append("stud_sectionx", stud_section)
+            
+
+
+
+                console.log(formData)
+
+                $.ajax({
+                    url: 'http://localhost/backend/crud/organization/create.php',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                      if (response.status === 1) {
+                          $('#registerModal').modal('show');
+                      } else {
+                          alert('Error creating account: ' + response.message);
+                      }
+                      },
+                      error: function(xhr, status, error) {
+                          alert("An error occurred: " + error);
+                      }
+                          });
+            });
+
+            $('#submitButton').on('click', function() {
+              window.location.href = 'orglist.php';
+            });
+        });
+    </script>

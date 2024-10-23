@@ -75,13 +75,13 @@
                   </div>
                 </div>
                 <div class="col-md-12 mb-3">
-                  <label for="inputNumber" class="col-sm-2 col-form-label">Application Form:</label>
+                  <label for="inputNumber" class="col-sm-2 col-form-label">Application Form</label>
                   <div class="col-sm-10">
                     <input class="form-control" type="file" name="applicationfile" id="applicationfile">
                   </div>
                 </div>
                 <div class="col-md-12 mb-3">
-                  <label for="inputNumber" class="col-sm-2 col-form-label">Organization Chart:</label>
+                  <label for="inputNumber" class="col-sm-2 col-form-label">Organization Chart</label>
                   <div class="col-sm-10">
                     <input class="form-control" type="file" name="organizationfile" id="organizationfile">
                   </div>

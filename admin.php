@@ -221,94 +221,7 @@
 
           <!-- Budget Report --><!-- End Budget Report -->
 
-          <!-- Website Traffic -->
-          <div class="card">
-            <div class="filter">
-              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <li class="dropdown-header text-start">
-                  <h6>Filter</h6>
-                </li>
 
-                <li><a class="dropdown-item" href="#">Today</a></li>
-                <li><a class="dropdown-item" href="#">This Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
-              </ul>
-            </div>
-
-            <div class="card-body pb-0">
-              <h5 class="card-title">Organization</h5>
-
-              <div id="feedbacksChart" style="min-height: 400px;" class="echart"></div>
-
-
-              <script>
-        // Function to fetch data from the PHP script
-        function fetchData() {
-            const xhr = new XMLHttpRequest();
-            xhr.open('GET', 'http://localhost/backend/crud/feedbacks/piechart.php', true);
-            xhr.onload = function () {
-                if (xhr.status === 200) {
-                    const data = JSON.parse(xhr.responseText);
-                    renderChart(data.message);
-                } else {
-                    console.error('Error fetching data');
-                }
-            };
-            xhr.send();
-        }
-
-        // Function to render the chart
-        function renderChart(data) {
-            const myChart = echarts.init(document.getElementById('feedbacksChart'));
-
-            const option = {
-                title: {
-                    text: 'Organizations Status Chart',
-                },
-                tooltip: {
-                    trigger: 'item'
-                },
-                legend: {
-                    top: '8%',
-                      left: 'center',
-                    data: data.map(item => item.name)
-                },
-                series: [{
-                    name: 'Categories',
-                    type: 'pie',
-                     radius: ['40%', '70%'],
-                      avoidLabelOverlap: false,
-                      label: {
-                        show: false,
-                        position: 'center'
-                      },
-                    data: data.map(item => ({
-                        value: item.value,
-                        name: item.name
-                    })),
-                    emphasis: {
-                        itemStyle: {
-                            shadowBlur: 10,
-                            shadowOffsetX: 0,
-                            shadowColor: 'rgba(0, 0, 0, 0.5)'
-                        }
-                    },
-                    animationType: 'scale',
-                    animationEasing: 'elasticOut'
-                }]
-            };
-
-            myChart.setOption(option);
-        }
-
-        // Fetch data and render the chart on page load
-        window.onload = fetchData;
-    </script>
-              
-              
-            </div>
-          </div><!-- End Website Traffic -->
 
           <!-- News & Updates Traffic --><!-- End News & Updates -->
 
@@ -370,19 +283,3 @@
   });
 </script>
 
-$.ajax({
-          url       : 'http://localhost/barangay_system_new/backend/reports/feedback-reports.php',   // URL to your PHP script
-          type      : 'GET',                                                               // Request method
-          dataType  : 'json',
-          success: function(response) {
-           const data = response.message;
-           if(data.length > 0){
-              const pending = data[0].count;
-              const approved = data[1].count;
-              const declined = data[2].count;
-              $("#feedback_approved").html(approved);
-              $("#feedback_pending").html(pending);
-              $("#feedback_declined").html(declined);
-           }
-          },
-      });

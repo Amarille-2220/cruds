@@ -35,4 +35,6 @@
                  return {"status":'invalid'}; // Token is malformed
             }
         }
+
+        
 </script>

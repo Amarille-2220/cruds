@@ -350,7 +350,7 @@ function deleteItem(org_id) {
                                     <td>${adv_name}</td>
 
                                       <div class="btn-group">
-                                       <td> <button class="btn btn-sm btn-danger" onClick="deleteItem('${org_id}')"><i class="bi bi-trash-fill"></i></button>
+                                      <td>
                                         <button class="btn btn-sm btn-primary" onClick="EditItem('${org_id}','${org_name}','${stud_name}','${adv_name}')"  data-bs-toggle="modal" data-bs-target="#modalEdit"><i class="bi bi-pencil-square"></i></button></td>
                                       </div>
                                     </td>
@@ -406,8 +406,7 @@ function deleteItem(org_id) {
 
 
                         div class="btn-group">
-                           <td><button class="btn btn-sm btn-danger" onClick="deleteItem('${item.org_id}')"><i class="bi bi-trash-fill"></i></button>
-                           <button class="btn btn-sm btn-primary" onClick="EditItem('${item.org_id}','${item.org_name}','${item.stud_name}','${item.adv_name}',)"  data-bs-toggle="modal" data-bs-target="#modalEdit"><i class="bi bi-file-earmark-arrow-down"></i></button>
+                          <td> <button class="btn btn-sm btn-primary" onClick="EditItem('${item.org_id}','${item.org_name}','${item.stud_name}','${item.adv_name}',)"  data-bs-toggle="modal" data-bs-target="#modalEdit"><i class="bi bi-file-earmark-arrow-down"></i></button>
                            <button class="btn btn-sm btn-success" onClick="readItem"><i class="bi bi-eye-fill"></i></button></td>
                         </div>
                         <td></td>

@@ -26,7 +26,7 @@
             <div class="card-body">
               <h5 class="card-title">Visitors Logbook</h5>
               <button type="button" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#myModal">
-              <i class="bi bi-plus-square"></i>
+              <i class="bi bi-person-add"></i>
               </button>
 
               <div class="filter">
