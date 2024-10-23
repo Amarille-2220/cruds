@@ -38,3 +38,8 @@
 
         
 </script>
+
+<script>
+    const navbar = document.getElementById('main');
+    navbar.innerHTML += links; // Use += to append
+</script>

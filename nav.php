@@ -106,7 +106,7 @@
         LC
     </div>
     <div style="display: flex; flex-direction: column; align-items: center; margin-top: 24px; text-align: center;">
-        <div style="font-weight: 500; color: #fff;">
+        <div style="font-weight: 500; color: #fff;" id="prof_user_name">
             Name
         </div>
         <div style="margin-top: 4px; font-size: 14px; color: #fff;">
@@ -160,12 +160,14 @@
 
 
 
-  var links="";
-console.log(usertype.toUpperCase())
-  if(usertype.toUpperCase()=="ENCODER"){
-    links +=`
-    
-      <li class="nav-item">
+$(document).ready(function() {
+            var usertype = localStorage.getItem('usertype'); // Get user type from localStorage
+            var links = "";
+
+            console.log(usertype ? usertype.toUpperCase() : "No user type found");
+            if (usertype && usertype.toUpperCase() === "ENCODER") {
+                links += `
+                    <li class="nav-item">
     <a class="nav-link collapsed" data-bs-target="#system-nav" data-bs-toggle="collapse" href="#">
       <i class="bi bi-globe2"></i><span>Student Council</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
@@ -208,15 +210,10 @@ console.log(usertype.toUpperCase())
       </li>
     </ul>
   </li><!-- End System Nav -->
-
-    `;
-
-
-  }
-  else if(usertype.toUpperCase()=="ADMIN"){
-    links+=`
-    
-  <header id="header" class="header fixed-top d-flex align-items-center">
+                `;
+            } else if (usertype && usertype.toUpperCase() === "ADMIN") {
+                links += `
+                    <header id="header" class="header fixed-top d-flex align-items-center">
 
 <div class="d-flex align-items-center justify-content-between">
   <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -315,7 +312,7 @@ console.log(usertype.toUpperCase())
         LC
     </div>
     <div style="display: flex; flex-direction: column; align-items: center; margin-top: 24px; text-align: center;">
-        <div style="font-weight: 500; color: #fff;">
+        <div style="font-weight: 500; color: #fff;" id="prof_user_name">
             Name
         </div>
         <div style="margin-top: 4px; font-size: 14px; color: #fff;">
@@ -412,11 +409,11 @@ console.log(usertype.toUpperCase())
 
 </ul>
 
-</aside>
+</aside>`;
+            }
 
-    `;
-   
-  }
-  const navbar = document.getElementById('nav_heading');
-  $("#nav_heading").append(links);
+            const navHeading = document.getElementById('nav_heading');
+            navHeading.innerHTML += links; // Use += to append
+        });
+    </script>
 </script>
