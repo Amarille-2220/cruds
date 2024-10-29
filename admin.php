@@ -2,7 +2,7 @@
 <html lang="en">
 
 <?php include 'admin-head.php' ?>
-
+<?php include './url-api.php'; ?>
 <body>
 
   <!-- ======= Header ======= -->
@@ -260,7 +260,7 @@
     // READs
     const token = localStorage.getItem('jwt');
     $.ajax({
-        url: 'http://localhost/backend/crud/organization/list.php', // URL to your PHP script
+        url: '<?php echo $url_api; ?>/crud/organization/list.php', // URL to your PHP script
         type: 'GET', // Request method
         dataType: 'json', // Expected data type from server
         beforeSend: function(xhr) {
