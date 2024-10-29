@@ -2,6 +2,7 @@
 <html lang="en">
 
 <?php include 'head.php' ?>
+<?php include './url-api.php'; ?>
 
 <body>
 
@@ -72,6 +73,18 @@
                   <div class="form-floating">
                     <input type="text" class="form-control" id="stud_contact" placeholder="Your Contact">
                     <label for="stud_contact">Contacts</label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="stud_contact" placeholder="Your Contact">
+                    <label for="stud_id">Student ID</label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-floating">
+                    <input type="password" class="form-control" id="stud_contact" placeholder="Your Contact">
+                    <label for="stud_password">Password</label>
                   </div>
                 </div>
                 <div class="col-md-12 mb-3">
@@ -218,6 +231,8 @@
             <label for="student_age">Year</label>
             <input type="text" class="form-control" id="edit_student_fullname" >
         </div>
+        
+        
         <button type="button" onclick="saveEdit()" class="btn btn-primary mt-3">Submit</button>
         <button type="button" class="btn btn-danger mt-3" data-bs-dismiss="modal">Close</button>
     </form>
@@ -314,7 +329,7 @@ function deleteItem(student_id) {
   $('#confirmDelete').off('click').on('click', function() {
     // Send the AJAX request to delete the item
     $.ajax({
-      url: 'http://localhost/backend/crud/student/delete.php',
+      url: '<?php echo $url_api; ?>/crud/student/delete.php',
       type: 'POST',
       data: { student_id: student_id },
       dataType: 'json',
@@ -369,7 +384,7 @@ function deleteItem(student_id) {
 
             // Send AJAX request
             $.ajax({
-                url: 'http://localhost/backend/crud/student/update.php',
+                url: '<?php echo $url_api; ?>/crud/student/update.php',
                 type: 'POST',
                 contentType: 'application/json',
                 data: data,
@@ -418,7 +433,7 @@ function deleteItem(student_id) {
     // READs
     const token = localStorage.getItem('jwt');
     $.ajax({
-        url: 'http://localhost/backend/crud/student/read.php', // URL to your PHP script
+        url: '<?php echo $url_api; ?>/crud/student/read.php', // URL to your PHP script
         type: 'GET', // Request method
         dataType: 'json', // Expected data type from server
         beforeSend: function(xhr) {
@@ -494,7 +509,7 @@ function deleteItem(student_id) {
 
     //         // Send AJAX request
     //         $.ajax({
-    //             url: 'http://localhost/backend/crud/organization/create.php',
+    //             url: '<?php echo $url_api; ?>/crud/organization/create.php',
     //             type: 'POST',
     //             // contentType: 'application/json',
     //             data: formData,
@@ -557,7 +572,7 @@ function deleteItem(student_id) {
                 console.log(formData)
 
                 $.ajax({
-                    url: 'http://localhost/backend/crud/organization/create.php',
+                    url: '<?php echo $url_api; ?>/crud/organization/create.php',
                     type: 'POST',
                     data: formData,
                     contentType: false,

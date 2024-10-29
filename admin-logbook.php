@@ -1,7 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php include './js/loginchecker.php' ?>
+<?php include './url-api.php'; ?>
 <?php include 'head.php' ?>
+
+
+<script>
+  const jwt = LoginChecker();
+    var user_type = "";
+    if(jwt.status=="invalid"){
+        localStorage.clear();
+        window.location.href = 'login.php';
+    }
+    else{
+      const data      = jwt.data
+      var   username  = data.data.user_name;
+      var   useremail = data.data.user_email;
+      var   usertype  = data.data.user_type;
+
+      localStorage.setItem('username',username);
+      localStorage.setItem('usertype',usertype);
+      localStorage.setItem('useremail',useremail);
+
+      
+    }
+</script>
 
 <body>
 
@@ -215,6 +239,13 @@
 
 <script src="assets/js/jquery/jquery.min.js"></script>
 <script>
+
+$("#span_user_name").html(username);
+    $("#head_user_name").html(username);
+    $("#org_user_name").html(username);
+    $("#user_user_type").html(usertype);
+    $("#prof_user_name").html(username);
+
   $(document).ready(function() {
     $('.dropdown-menu li a').on('click', function() {
         var selectedAction = $(this).data('value');
@@ -229,7 +260,7 @@ function deleteItem(visitor_id) {
   $('#confirmDelete').off('click').on('click', function() {
     // Send the AJAX request to delete the item
     $.ajax({
-      url: 'http://localhost/backend/crud/logbook/delete.php',
+      url: '<?php echo $url_api; ?>/crud/logbook/delete.php',
       type: 'POST',
       data: { visitor_id: visitor_id },
       dataType: 'json',
@@ -284,7 +315,7 @@ function deleteItem(visitor_id) {
 
             // Send AJAX request
             $.ajax({
-                url: 'http://localhost/backend/crud/student/update.php',
+                url: '<?php echo $url_api; ?>/crud/student/update.php',
                 type: 'POST',
                 contentType: 'application/json',
                 data: data,
@@ -332,7 +363,7 @@ function deleteItem(visitor_id) {
     // READs
     const token = localStorage.getItem('jwt');
     $.ajax({
-        url: 'http://localhost/backend/crud/logbook/read.php', // URL to your PHP script
+        url: '<?php echo $url_api; ?>/crud/logbook/read.php', // URL to your PHP script
         type: 'GET', // Request method
         dataType: 'json', // Expected data type from server
         beforeSend: function(xhr) {
@@ -404,7 +435,7 @@ function deleteItem(visitor_id) {
 
             // Send AJAX request
             $.ajax({
-                url: 'http://localhost/backend/crud/logbook/create.php',
+                url: '<?php echo $url_api; ?>/crud/logbook/create.php',
                 type: 'POST',
                 contentType: 'application/json',
                 data: data,

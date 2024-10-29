@@ -9,6 +9,7 @@
 
 
 <?php include './js/loginchecker.php' ?>
+<?php include './url-api.php'; ?>
 
 <script>
     const jwt = LoginChecker();
@@ -304,7 +305,7 @@ function deleteItem(student_id) {
   $('#confirmDelete').off('click').on('click', function() {
     // Send the AJAX request to delete the item
     $.ajax({
-      url: 'http://localhost/backend/auth-file/delete.php',
+      url: '<?php echo $url_api; ?>/auth-file/delete.php',
       type: 'POST',
       data: { user_id: user_id },
       dataType: 'json',
@@ -359,7 +360,7 @@ function deleteItem(student_id) {
 
             // Send AJAX request
             $.ajax({
-                url: 'http://localhost/backend/crud/student/update.php',
+                url: '<?php echo $url_api; ?>/crud/student/update.php',
                 type: 'POST',
                 contentType: 'application/json',
                 data: data,
@@ -408,7 +409,7 @@ function deleteItem(student_id) {
     // READs
     const token = localStorage.getItem('jwt');
     $.ajax({
-        url: 'http://localhost/backend/auth-file/read.php', // URL to your PHP script
+        url: '<?php echo $url_api; ?>/auth-file/read.php', // URL to your PHP script
         type: 'GET', // Request method
         dataType: 'json', // Expected data type from server
         beforeSend: function(xhr) {
@@ -467,7 +468,7 @@ const formData = {
 
 
     $.ajax({
-        url     : 'http://localhost/backend/auth-file/registration.php',
+        url     : '<?php echo $url_api; ?>/auth-file/registration.php',
         type    : 'POST',
         data    : formData,
         dataType: 'json',

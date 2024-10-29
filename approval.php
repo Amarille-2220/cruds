@@ -2,6 +2,7 @@
 <html lang="en">
 
 <?php include 'head.php' ?>
+<?php include './url-api.php'; ?>
 
 <body>
 
@@ -163,7 +164,7 @@
     $('#confirmDelete').off('click').on('click', function() {
       // Send the AJAX request to delete the item
       $.ajax({
-        url: 'http://localhost/backend/crud/student/delete.php',
+        url: '<?php echo $url_api; ?>/crud/student/delete.php',
         type: 'POST',
         data: {
           student_id: student_id
@@ -216,7 +217,7 @@
 
     // Send AJAX request
     $.ajax({
-      url: 'http://localhost/backend/crud/organization/update.php',
+      url: '<?php echo $url_api; ?>/crud/organization/update.php',
       type: 'POST',
       contentType: 'application/json',
       data: data,
@@ -261,7 +262,7 @@
     }
 
     $.ajax({
-      url: 'http://localhost/backend/crud/organization/read.php', // URL to your PHP script
+      url: '<?php echo $url_api; ?>/crud/organization/read.php', // URL to your PHP script
       type: 'GET', // Request method
       dataType: 'json',
       data: formData,
@@ -331,7 +332,7 @@
 
       // Send AJAX request
       $.ajax({
-        url: 'http://localhost/backend/crud/student/create.php',
+        url: '<?php echo $url_api; ?>/crud/student/create.php',
         type: 'POST',
         contentType: 'application/json',
         data: data,

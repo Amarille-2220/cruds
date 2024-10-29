@@ -8,191 +8,240 @@
 
   <!-- ======= Header ======= -->
   <?php include 'nav.php' ?>
+  <style>
+        body {
+            background-color: lightgray;
+            font-family: 'Kanit', sans-serif;
+        }
+
+        .calendar-base {
+            border-radius: 20px;
+            background-color: white;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+            color: black;
+        }
+
+        .year {
+            color: #E8E8E8;
+            font-size: 30px;
+            float: right;
+            font-weight: bold;
+        }
+
+        .month-color {
+            color: #27AE60;
+            font-weight: bold;
+        }
+
+        .month-hover:hover {
+            color: #27e879 !important;
+        }
+
+        .days {
+            color: #AAAAAA;
+            font-weight: 600;
+            display: grid;
+            grid-template-columns: repeat(7, 1fr); /* Align days in a grid */
+            text-align: center; /* Center-align the days */
+            margin-bottom: 10px; /* Space below the days */
+        }
+
+        .num-dates {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr); /* 7 columns for the days of the week */
+            gap: 10px; /* Space between the dates */
+            margin-top: 20px;
+        }
+
+        .num-dates span {
+            text-align: center; /* Center-align the dates */
+            padding: 10px; /* Add some padding for better appearance */
+            border-radius: 5px; /* Rounded corners for the dates */
+            transition: background-color 0.3s; /* Smooth transition for hover effect */
+        }
+
+        .num-dates span:hover {
+            background-color: #f0f0f0; /* Light gray background on hover */
+        }
+
+        .num-date {
+            font-size: 150px;
+            font-weight: 700;
+            text-align: center; /* Center-align the selected date */
+        }
+
+        .day {
+            font-size: 30px;
+            text-align: center; /* Center-align the day */
+        }
+
+        .current-events {
+            font-size: 15px;
+            margin-top: 20px;
+        }
+
+        .create-event {
+            font-size: 18px;
+            margin-top: 30px;
+        }
+
+        .add-event {
+            width: 20px;
+            height: 20px;
+            padding: 0;
+            border-radius: 50%;
+            border: solid white 2px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .add {
+            font-size: 25px;
+            line-height: 20px;
+        }
+
+        .grey {
+            color: #AAAAAA; /* Color for empty spaces */
+        }
+    </style>
 
   <main id="main" class="main">
 
-    <div class="pagetitle">
-      <h1>Student Council</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Pages</li>
-          <li class="breadcrumb-item active">Renewal</li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
-
-    <section class="section">
-    <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Student Information</h5>
-              <button type="button" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#myModal">
-              <i class="bi bi-person-add"></i>
-              </button>
-
-              <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8 calendar-base">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="year" id="year"></div>
+                    <div class="months" id="months"></div>
                 </div>
-
-              <!-- TStudent Information -->
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Birthday</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody id="tbl_tbody">
-
-                </tbody>
-              </table>
-              <!-- End Student Information -->
-
+                <hr />
+                <div class="days">
+                    <div>SUN</div>
+                    <div>MON</div>
+                    <div>TUE</div>
+                    <div>WED</div>
+                    <div>THU</div>
+                    <div>FRI</div>
+                    <div>SAT</div>
+                </div>
+                <div class="num-dates" id="num-dates"></div>
             </div>
-          </div>
+
+            <div class="col-md-4 calendar-left">
+                <div class="num-date" id="selected-date">--</div>
+                <div class="day" id="selected-day">--</div>
+                <div class="current-events">Current Events
+                    <ul id="event-list">
+                        <li>No events</li>
+                    </ul>
+                    <span class="posts">See post events</span>
+                </div>
+                <div class="create-event">Create an Event</div>
+                <hr />
+                <div class="add-event" id="add-event"><span class="add">+</span></div>
+            </div>
+        </div>
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    let currentDate = new Date();
+
+    function renderCalendar() {
+        const yearElement = document.getElementById('year');
+        const monthsElement = document.getElementById('months');
+        const numDatesElement = document.getElementById('num-dates');
+
+        yearElement.innerText = currentDate.getFullYear();
+        monthsElement.innerHTML = '';
+
+        const monthNames = [
+            "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        ];
+
+        monthNames.forEach((month, index) => {
+            if (index === currentDate.getMonth()) {
+                monthsElement.innerHTML += `<strong class="month-color">${month}</strong> `;
+            } else {
+                monthsElement.innerHTML += `<span class="month-hover">${month}</span> `;
+            }
+        });
+
+        const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth (), 1);
+        const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+        const daysInMonth = lastDayOfMonth.getDate();
+        const firstDayOfWeek = firstDayOfMonth.getDay();
+
+        numDatesElement.innerHTML = '';
+
+        for (let i = 0; i < firstDayOfWeek; i++) {
+            numDatesElement.innerHTML += `<span class="grey"> </span> `;
+        }
+
+        for (let i = 1; i <= daysInMonth; i++) {
+            if (i === currentDate.getDate()) {
+                numDatesElement.innerHTML += `<strong class="month-color">${i}</strong> `;
+            } else {
+                numDatesElement.innerHTML += `<span>${i}</span> `;
+            }
+        }
+
+        const remainingDays = 7 - (firstDayOfWeek + daysInMonth) % 7;
+        for (let i = 0; i < remainingDays; i++) {
+            numDatesElement.innerHTML += `<span class="grey"> </span> `;
+        }
+    }
+
+    function handleMonthChange(event) {
+        const target = event.target;
+        if (target.classList.contains('month-hover')) {
+            const monthIndex = Array.prototype.indexOf.call(target.parentNode.children, target);
+            currentDate.setMonth(monthIndex);
+            renderCalendar();
+        }
+    }
+
+    function handleDateSelect(event) {
+        const target = event.target;
+        if (target.tagName === 'SPAN' && !target.classList.contains('grey')) {
+            const selectedDate = parseInt(target.innerText);
+            currentDate.setDate(selectedDate);
+            renderSelectedDate();
+        }
+    }
+
+    function renderSelectedDate() {
+        const selectedDateElement = document.getElementById('selected-date');
+        const selectedDayElement = document.getElementById('selected-day');
+
+        selectedDateElement.innerText = currentDate.getDate();
+        selectedDayElement.innerText = getDayOfWeek(currentDate.getDay());
+    }
+
+    function getDayOfWeek(dayIndex) {
+        const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+        return daysOfWeek[dayIndex];
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        renderCalendar();
+        renderSelectedDate();
+
+        const monthsElement = document.getElementById('months');
+        monthsElement.addEventListener('click', handleMonthChange);
+
+        const numDatesElement = document.getElementById('num-dates');
+        numDatesElement.addEventListener('click', handleDateSelect);
+    });
+</script>
+
+    
     </section>
 
-     <!-- add modal -->
-  <div class="modal fade" id="myModal">
-   <div class="modal-dialog">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Add Student</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-      <div class="container mt-5">
-    <h2>Insert New Item</h2>
-    <form id="insertStudent">
-        <div class="form-group">
-            <label for="student_id">Student ID</label>
-            <input type="text" class="form-control" id="student_id">
-        </div>
-        <div class="form-group">
-            <label for="student_fullname">Fullname</label>
-            <input type="text" class="form-control" id="student_fullname" >
-        </div>
-        <div class="form-group">
-            <label for="student_birthday">Birthday</label>
-            <input type="date" class="form-control" id="student_birthday" >
-        </div>
-        <div class="form-group">
-            <label for="student_address">Address</label>
-            <input type="text" class="form-control" id="student_address" >
-        </div>
-        <div class="form-group">
-        <label for="select-action">Year:</label>
-        <div class="dropdown">
-            <button class="btn btn-light dropdown-toggle" type="button" id="select-action" data-bs-toggle="dropdown" aria-expanded="false">
-                Select year:
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#" data-value="action1">1ST YEAR</a></li>
-                <li><a class="dropdown-item" href="#" data-value="action2">2ND YEAR</a></li>
-                <li><a class="dropdown-item" href="#" data-value="action3">3RD YEAR</a></li>
-                <li><a class="dropdown-item" href="#" data-value="action3">4TH YEAR</a></li>
-            </ul>
-        </div>
-        <input type="hidden" id="selected-action" name="selected_action">
-    </div>
-        </div>
-        <button type="submit" class="btn btn-primary mt-3">Submit</button>
-                <button type="button" class="btn btn-danger mt-3" data-bs-dismiss="modal">Close</button>
-    </form>
-    <div id="responseMessage" class="mt-3"></div>
-</div>
-      </div>
-
-
-    </div>
-  </div>
-</div>
-
-<!-- EDIT -->
-
-<div class="modal fade" id="modalEdit">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Edit Student Info</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-      <div class="container mt-5">
-    <form id="insertStudent">
-        <div class="form-group">
-            <label for="student_id">Student ID</label>
-            <input type="text" class="form-control" id="edit_student_id">
-        </div>
-        <div class="form-group">
-            <label for="student_fullname">Fullname</label>
-            <input type="text" class="form-control" id="edit_student_fullname" >
-        </div>
-        <div class="form-group">
-            <label for="student_birthday">Birthday</label>
-            <input type="date" class="form-control" id="edit_student_birthday" >
-        </div>
-        <div class="form-group">
-            <label for="student_address">Address</label>
-            <input type="text" class="form-control" id="edit_student_address" >
-        </div>
-        <div class="form-group">
-            <label for="student_age">Year</label>
-            <input type="text" class="form-control" id="edit_student_fullname" >
-        </div>
-        <button type="button" onclick="saveEdit()" class="btn btn-primary mt-3">Submit</button>
-        <button type="button" class="btn btn-danger mt-3" data-bs-dismiss="modal">Close</button>
-    </form>
-    <div id="responseMessage" class="mt-3"></div>
-</div>
-      </div>
-
-      <!-- Modal footer -->
-    </div>
-  </div>
-</div>
-
-<!-- Add a modal dialog for deletion confirmation -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to delete this item?</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
-      </div>
-    </div>
-  </div>
-</div>
-
- 
-</div>
+    
 
   </main><!-- End #main -->
 
@@ -210,6 +259,11 @@
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
@@ -218,6 +272,9 @@
 
 </html>
 <script src="assets/js/jquery/jquery.min.js"></script>
+
+
+
 <script>
 
 $(document).ready(function() {

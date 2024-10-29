@@ -2,6 +2,7 @@
 <html lang="en">
 
 <?php include './js/loginchecker.php' ?>
+<?php include './url-api.php'; ?>
 
 <script>
   var usertype = localStorage.getItem('usertype');
@@ -94,8 +95,56 @@
           <div class="row">
 
             <!-- Sales Card -->
-            <div class="col-xxl-4 col-md-6">
+            <div class="col-xxl-4 col-md-12">
               <div class="card info-card sales-card">
+                <div class="card-body mt-3">
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-person"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6 class="card-title" id="org_user_name">Christian Gervacio Amarille</h6>
+                    </div>
+                  </div>
+                  <p class="card-text">
+                    <ul class="list-unstyled ms-4 ">
+                      <li>Course: <span id="user_user_type"></span></li>
+                      <li>Organization: <span></span></li>
+                      <li>School ID: <span></span></li>
+                      <li>4th Year College</li>
+                    </ul>
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-xxl-4 col-md-12">
+              <div class="card info-card sales-card">
+                <div class="card-body mt-3">
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-person"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6 class="card-title">Adviser</h6>
+                    </div>
+                  </div>
+                  <p class="card-text">
+                    <ul class="list-unstyled ms-4 ">
+                      <li>Name: <span></span></li>
+                      <li>Organization: <span></span></li>
+                    </ul>
+                  </p>
+                </div>
+              </div>
+            </div><!-- End Sales Card -->
+
+            
+
+            <!-- Customers Card -->
+            <div class="col-xxl-4 col-xl-6">
+
+              <div class="card info-card customers-card">
 
                 <div class="filter">
                   <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
@@ -111,25 +160,62 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Organizations</h5>
+                  <h5 class="card-title">Member</h5>
 
                   <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-globe"></i>
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center text-primary">
+                      <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
-                      <h6 id="org_total">1</h6>
-                      <span class="text-success small pt-1 fw-bold"></span> 
+                      <h6>5</h6>
+                      <span class="text-success small pt-1 fw-bold">Active</span>
 
                     </div>
                   </div>
+
+                </div>
+              </div>
+
+            </div>
+            
+            <div class="col-xxl-4 col-xl-6">
+
+              <div class="card info-card customers-card">
+
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
+
+                    <li><a class="dropdown-item" href="#">Today</a></li>
+                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                  </ul>
                 </div>
 
+                <div class="card-body">
+                  <h5 class="card-title">Member</h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center text-danger">
+                      <i class="bi bi-people"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6 class="text-danger">5</h6>
+                      <span class="text-danger small pt-1 fw-bold">Inactive</span>
+
+                    </div>
+                  </div>
+
+                </div>
               </div>
-            </div><!-- End Sales Card -->
+
+            </div><!-- End Customers Card -->
 
             <!-- Revenue Card -->
-            <div class="col-xxl-4 col-md-6">
+            <div class="col-xxl-4 col-md-12">
               <div class="card info-card revenue-card">
 
                 <div class="filter">
@@ -162,43 +248,6 @@
 
               </div>
             </div><!-- End Revenue Card -->
-
-            <!-- Customers Card -->
-            <div class="col-xxl-4 col-xl-12">
-
-              <div class="card info-card customers-card">
-
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
-
-                <div class="card-body">
-                  <h5 class="card-title">Users</h5>
-
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-people"></i>
-                    </div>
-                    <div class="ps-3">
-                      <h6>5</h6>
-                      <span class="text-success small pt-1 fw-bold">Active</span>
-
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-            </div><!-- End Customers Card -->
 
             <!-- Reports --><!-- End Reports -->
 
@@ -553,22 +602,9 @@
               
             </div>
           </div>
-          </div><<!-- End Website Traffic -->
+          </div><!-- End Website Traffic -->
 
-          <div class="col-12">
-          <div class="card">
-            <div class="filter">
-              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <li class="dropdown-header text-start">
-                  <h6>Filter</h6>
-                </li>
-
-                <li><a class="dropdown-item" href="#">Today</a></li>
-                <li><a class="dropdown-item" href="#">This Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
-              </ul>
-            </div>
+          
 
             
 
@@ -586,10 +622,13 @@
     </script>
 
 <script>
+
+
+
         // Function to fetch data from the PHP script
         function fetchData() {
             const xhr = new XMLHttpRequest();
-            xhr.open('GET', 'http://localhost/backend/crud/feedbacks/piechart.php', true);
+            xhr.open('GET', '<?php echo $url_api; ?>/crud/feedbacks/piechart.php', true);
             xhr.onload = function () {
                 if (xhr.status === 200) {
                     const data = JSON.parse(xhr.responseText);
@@ -662,6 +701,8 @@
 
     $("#span_user_name").html(username);
     $("#head_user_name").html(username);
+    $("#org_user_name").html(username);
+    $("#user_user_type").html(usertype);
     $("#prof_user_name").html(username);
 
 
@@ -671,7 +712,7 @@
     // READs
     const token = localStorage.getItem('jwt');
     $.ajax({
-        url: 'http://localhost/backend/crud/organization/list.php', // URL to your PHP script
+        url: '<?php echo $url_api; ?>/crud/organization/list.php', // URL to your PHP script
         type: 'GET', // Request method
         dataType: 'json', // Expected data type from server
         beforeSend: function(xhr) {

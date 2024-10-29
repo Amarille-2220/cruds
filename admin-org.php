@@ -2,6 +2,7 @@
 <html lang="en">
 
 <?php include './js/loginchecker.php' ?>
+<?php include './url-api.php'; ?>
 
 <script>
     const jwt = LoginChecker();
@@ -300,7 +301,7 @@ function deleteItem(org_id) {
   $('#confirmDelete').off('click').on('click', function() {
     // Send the AJAX request to delete the item
     $.ajax({
-      url: 'http://localhost/backend/crud/organization/delete.php',
+      url: '<?php echo $url_api; ?>/crud/organization/delete.php',
       type: 'POST',
       data: { org_id: org_id },
       dataType: 'json',
@@ -355,7 +356,7 @@ function deleteItem(org_id) {
 
             // Send AJAX request
             $.ajax({
-                url: 'http://localhost/backend/crud/student/update.php',
+                url: '<?php echo $url_api; ?>/crud/student/update.php',
                 type: 'POST',
                 contentType: 'application/json',
                 data: data,
@@ -405,7 +406,7 @@ function deleteItem(org_id) {
     const token = localStorage.getItem('jwt');
     const formData = {org_status:"ACTIVE"}
     $.ajax({
-        url: 'http://localhost/backend/crud/organization/read.php', // URL to your PHP script
+        url: '<?php echo $url_api; ?>/crud/organization/read.php', // URL to your PHP script
         type: 'GET', // Request method
         dataType: 'json', // Expected data type from server
         data:formData,

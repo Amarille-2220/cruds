@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include 'head1.php' ?>
-<?php include './js/loginchecker.php' ?>
+<?php include 'head1.php'; ?>
+<?php include './js/loginchecker.php'; ?>
+<?php include './url-api.php'; ?>
+
+
 
 
 <style>
@@ -185,7 +188,7 @@ button:hover {
             };
             
             $.ajax({
-                url: 'http://localhost/backend/auth-file/login.php',
+                url: '<?php echo $url_api; ?>/auth-file/login.php',
                 type: 'POST',
                 data: formData,
                 dataType: 'json',

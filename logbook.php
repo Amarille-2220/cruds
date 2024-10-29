@@ -2,6 +2,7 @@
 <html lang="en">
 
 <?php include 'head.php' ?>
+<?php include './url-api.php'; ?>
 
 <body>
 
@@ -229,7 +230,7 @@ function deleteItem(visitor_id) {
   $('#confirmDelete').off('click').on('click', function() {
     // Send the AJAX request to delete the item
     $.ajax({
-      url: 'http://localhost/backend/crud/logbook/delete.php',
+      url: '<?php echo $url_api; ?>/crud/logbook/delete.php',
       type: 'POST',
       data: { visitor_id: visitor_id },
       dataType: 'json',
@@ -284,7 +285,7 @@ function deleteItem(visitor_id) {
 
             // Send AJAX request
             $.ajax({
-                url: 'http://localhost/backend/crud/student/update.php',
+                url: '<?php echo $url_api; ?>/crud/student/update.php',
                 type: 'POST',
                 contentType: 'application/json',
                 data: data,
@@ -332,7 +333,7 @@ function deleteItem(visitor_id) {
     // READs
     const token = localStorage.getItem('jwt');
     $.ajax({
-        url: 'http://localhost/backend/crud/logbook/read.php', // URL to your PHP script
+        url: '<?php echo $url_api; ?>/crud/logbook/read.php', // URL to your PHP script
         type: 'GET', // Request method
         dataType: 'json', // Expected data type from server
         beforeSend: function(xhr) {
@@ -403,7 +404,7 @@ function deleteItem(visitor_id) {
 
             // Send AJAX request
             $.ajax({
-                url: 'http://localhost/backend/crud/logbook/create.php',
+                url: '<?php echo $url_api; ?>/crud/logbook/create.php',
                 type: 'POST',
                 contentType: 'application/json',
                 data: data,

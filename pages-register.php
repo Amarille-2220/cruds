@@ -2,7 +2,7 @@
 <html lang="en">
 
 <?php include 'head.php' ?>
-
+<?php include './url-api.php'; ?>
 <body>
 
   <main>
@@ -141,7 +141,7 @@ $('#registrationForm').on('submit', function(e) {
 
 
         $.ajax({
-            url     : 'http://localhost/backend/auth-file/registration.php',
+            url     : '<?php echo $url_api; ?>/auth-file/registration.php',
             type    : 'POST',
             data    : formData,
             dataType: 'json',

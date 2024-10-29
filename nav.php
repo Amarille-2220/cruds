@@ -4,6 +4,8 @@
   function logout() {
   localStorage.clear(); 
   window.location.href = 'login.php'; 
+
+  
 }
 </script>
 
@@ -169,34 +171,28 @@ $(document).ready(function() {
                 links += `
                     <li class="nav-item">
     <a class="nav-link collapsed" data-bs-target="#system-nav" data-bs-toggle="collapse" href="#">
-      <i class="bi bi-globe2"></i><span>Student Council</span><i class="bi bi-chevron-down ms-auto"></i>
+      <i class="bi bi-globe2"></i><span>Organization</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
     <ul id="system-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
       <li>
-        <a href="orglist.php">
-          <i class="bi bi-circle icon"></i><span>Organizations</span>
+        <a href="modules.php">
+          <i class="bi bi-circle icon"></i><span>Members</span>
         </a>
       </li>
       <li>
         <a href="orgreg.php">
-          <i class="bi bi-circle icon"></i><span>Registration</span>
+          <i class="bi bi-circle icon"></i><span>Renewal</span>
+        </a>
+      </li>
+      <li>
+        <a href="orgreg.php">
+          <i class="bi bi-circle icon"></i><span>Accomplishment Report</span>
         </a>
       </li>
     </ul>
   </li>
   
-  <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#logbook-nav" data-bs-toggle="collapse" href="#">
-      <i class="bi bi-journal-check"></i><span>Logbook</span><i class="bi bi-chevron-down ms-auto"></i>
-    </a>
-    <ul id="logbook-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-      <li>
-        <a href="logbook.php">
-          <i class="bi bi-circle icon"></i><span>Visitors</span>
-        </a>
-      </li>
-    </ul>
-  </li>
+
   
   <li class="nav-item">
     <a class="nav-link collapsed" data-bs-target="#activies-nav" data-bs-toggle="collapse" href="#">
@@ -204,7 +200,7 @@ $(document).ready(function() {
     </a>
     <ul id="activies-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
       <li>
-        <a href="logbook.php">
+        <a href="calendar.php">
           <i class="bi bi-circle icon"></i><span>Calendar Events</span>
         </a>
       </li>
@@ -391,7 +387,7 @@ $(document).ready(function() {
     </a>
     <ul id="activies-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
       <li>
-        <a href="logbook.php">
+        <a href="calendar.php">
           <i class="bi bi-circle icon"></i><span>Calendar Events</span>
         </a>
       </li>
